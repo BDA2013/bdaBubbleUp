@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Thought = require('../models/Thought');
 
 module.exports = {
     // get all users
@@ -51,7 +52,9 @@ module.exports = {
     // delete user by id
     async deleteUser(req, res) {
         try {
-            const deletedUser = await User.findOneAndDelete({ _id: req.params.userId });
+            const deletedUser = await User.findOneAndDelete(
+                { _id: req.params.userId }
+            );
             if (!deletedUser) {
                 return res.status(404).json({ message: 'No user with that ID' });
             }

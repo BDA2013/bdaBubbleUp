@@ -19,9 +19,6 @@ router.route('/:userId').put(updateUser);
 // DELETE to remove user by its _id
 router.route('/:userId').delete(deleteUser);
 
-// BONUS: Remove a user's associated thoughts when deleted.
-router.route('/:userId').delete(deleteUser);
-
 // /api/users/:userId/friends/:friendId
 // POST to add a new friend to a user's friend list
 router.route('/:userId/friends/:friendId').post(addFriend);
