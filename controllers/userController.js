@@ -55,6 +55,10 @@ module.exports = {
             const deletedUser = await User.findOneAndDelete(
                 { _id: req.params.userId }
             );
+            const deletedThoughts = await Thought.deleteMany(
+                { username: deletedUser.username }
+            );
+
             if (!deletedUser) {
                 return res.status(404).json({ message: 'No user with that ID' });
             }
