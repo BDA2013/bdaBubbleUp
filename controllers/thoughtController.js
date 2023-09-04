@@ -1,4 +1,5 @@
 const Thought = require('../models/Thought');
+const User = require('../models/User');
 
 module.exports = {
     // get all thoughts
@@ -27,6 +28,16 @@ module.exports = {
     async createThought (req, res) {
         try {
             const dbThoughtData = await Thought.create(req.body);
+            if (dbThoughtData.userId === User.userId) {
+                const dbUserData = await User.findOneAndUpdate(
+                    { _id: req.body.userId },
+                    { $push: { thoughts: dbThoughtData._id } },
+                    { new: true }
+                );
+                if (!dbUserData) {
+                    return res.status(404).json({ message: 'No user with that ID' });
+                }
+            }
             res.json(dbThoughtData);
         } catch (err) {
             res.status(500).json(err);
