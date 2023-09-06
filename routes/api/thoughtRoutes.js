@@ -10,21 +10,20 @@ const {
     deleteReaction
 } = require('../../controllers/thoughtController.js');
 
-router.route('/').get(getThoughts).post(createThought);
+router.route('/')
+.get(getThoughts)
+.post(createThought);
 
-router.route('/:thoughtId').get(getSingleThought);
+router.route('/:thoughtId')
+.get(getSingleThought)
+.put(updateThought)
+.delete(deleteThought);
 
-// PUT to update a thought by its _id
-router.route('/:thoughtId').put(updateThought);
-
-// DELETE to remove thought by its _id
-router.route('/:thoughtId').delete(deleteThought);
-
-// /api/thoughts/:thoughtId/reactions
-// POST to create a reaction stored in a single thought's reactions array field
-router.route('/:thoughtId/reactions').post(addReaction);
+router.route('/:thoughtId/reactions')
+.post(addReaction);
 
 // DELETE to pull and remove a reaction by the reaction's reactionId value
-router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
+router.route('/:thoughtId/reactions/:reactionId')
+.delete(deleteReaction);
 
 module.exports = router;
