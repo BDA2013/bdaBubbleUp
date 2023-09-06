@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/BDA2013/bdaBubbleUp#readme",
   "dependencies": {
-    "mongoose": "^7.5.0"
-  },
-  "devDependencies": {}
+    "mongoose": "^7.5.0",
+    "nodemon": "^3.0.1"
+  }
 }
