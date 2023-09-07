@@ -14,25 +14,13 @@ router.route ('/')
 .post(createUser);
 
 router.route('/:userId')
-.get(getSingleUser);
-
-// PUT to update a user by its _id
-router.route('/:userId')
 .put(updateUser)
+.get(getSingleUser)
 .delete(deleteUser);
 
-// DELETE to remove user by its _id
-// router.route('/:userId').delete(deleteUser);
-
-// /api/users/:userId/friends/:friendId
-// POST to add a new friend to a user's friend list
 router.route('/:userId/friends/:friendId')
 .post(addFriend)
 .delete(deleteFriend);
-
-// DELETE to remove a friend from a user's friend list
-// router.route('/:userId/friends/:friendId').delete(deleteFriend);
-
 
 module.exports = router;
 

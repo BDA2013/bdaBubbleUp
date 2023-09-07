@@ -28,9 +28,9 @@ module.exports = {
     async createThought (req, res) {
         try {
             const dbThoughtData = await Thought.create(req.body);
-            if (dbThoughtData.userId === User.userId) {
+            if (dbThoughtData.username === User.username) {
                 const dbUserData = await User.findOneAndUpdate(
-                    { _id: req.body.userId },
+                    { username: req.body.username },
                     { $push: { thoughts: dbThoughtData._id } },
                     { new: true }
                 );
@@ -48,7 +48,7 @@ module.exports = {
         try {
             const updatedThought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $set: req.body },
+                { $set: req.body.thoughtText },
                 { runValidators: true, new: true }
             );
             if (!updatedThought) {
